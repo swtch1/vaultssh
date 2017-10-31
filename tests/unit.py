@@ -1,5 +1,4 @@
 from unittest import TestCase, main, skip
-import json
 
 import requests_mock
 
