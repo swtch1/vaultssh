@@ -1,1 +1,1 @@
-from vaultssh import *
+from vaultssh.vault import *
