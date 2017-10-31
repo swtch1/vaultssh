@@ -74,7 +74,7 @@ class Client(object):
         :return: signed private key
         """
         if auto_gen_key:
-            public_key = generate_pub_key().decode()
+            public_key = generate_pub_key()
 
         url = '{protocol}://{host}:{port}/{api_version}/{backend}/sign/{client_role}'.format(
             protocol='https' if self.use_ssl else 'http',
