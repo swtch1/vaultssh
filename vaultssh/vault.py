@@ -15,11 +15,11 @@ class Client(object):
     ):
         """
         Create a client that can communicate with the Vault API.
-        :param host:
-        :param port:
-        :param api_version:
-        :param use_ssl:
-        :param verify:
+        :param host: vault host IP or DNS name
+        :param port: vault listening port
+        :param api_version: vault API version
+        :param use_ssl: use HTTPS
+        :param verify: verify certificate
         """
         self.host = host
         self.port = port
