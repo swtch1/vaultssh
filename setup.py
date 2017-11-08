@@ -4,7 +4,7 @@ DESCRIPTION = 'Sign SSH keys with Hashicorp Vault that can then be used to SSH i
 
 setup(
     name='vaultssh',
-    version='0.1',
+    version='0.2',
     description=DESCRIPTION,
     url='https://github.build.ge.com/CoreTechAutomation/vaultssh',
     author='Joshua Thornton',
