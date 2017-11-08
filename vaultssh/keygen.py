@@ -1,5 +1,5 @@
-from Crypto.PublicKey import RSA
-from Crypto import Random
+from Cryptodome.PublicKey import RSA
+from Cryptodome import Random
 
 
 def ssh_keygen(bits: int=2048) -> (str, str):
