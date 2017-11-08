@@ -11,7 +11,7 @@ setup(
     author_email='joshua.thornton@ge.com',
     packages=['vaultssh'],
     install_requires=[
-        'pycryptodome',
+        'pycryptodome',  # more secure implementation of PyCrypto
         'requests',
         'requests-mock',
     ],

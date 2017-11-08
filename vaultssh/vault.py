@@ -1,8 +1,6 @@
 import requests
 import json
 
-from vaultssh.keygen import generate_pub_key
-
 
 class Client(object):
     def __init__(
@@ -57,25 +55,18 @@ class Client(object):
     def sign_key(
             self,
             token: str,
+            public_key: str,
             backend: str='ssh-client-signer',
             client_role: str='clientrole',
-            auto_gen_key=True,
-            public_key: str=None,
     ) -> str:
         """
-        Sign an SSH key
+        Sign an SSH key.
         :param token: client token used to authenticate with Vault
+        :param public_key: public key string to sign
         :param backend: vault backend to use
         :param client_role: name of the Vault client role
-        :param auto_gen_key: automatically generate an OpenSSH RSA public key to sign
-               not compatible with public_key parameter
-        :param public_key: public key string to sign
-               not compatible with auto_gen_key parameter
         :return: signed private key
         """
-        if auto_gen_key:
-            public_key = generate_pub_key()
-
         url = '{protocol}://{host}:{port}/{api_version}/{backend}/sign/{client_role}'.format(
             protocol='https' if self.use_ssl else 'http',
             host=self.host,
@@ -94,5 +85,9 @@ class Client(object):
         }
 
         response = requests.request("POST", url, data=payload, headers=headers, verify=self.verify)
-        signed_key = response.json()['data']['signed_key']
+        try:
+            signed_key = response.json()['data']['signed_key'].rstrip('\n')
+        except KeyError as e:
+            print('error retrieving key from request response: {}'.format(e))
+            raise
         return signed_key
