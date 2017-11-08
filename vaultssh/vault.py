@@ -10,6 +10,7 @@ class Client(object):
             api_version: str='v1',
             use_ssl: bool=True,
             verify: bool=True,
+            timeout: str=None,
     ):
         """
         Create a client that can communicate with the Vault API.
@@ -24,8 +25,13 @@ class Client(object):
         self.api_version = api_version
         self.use_ssl = use_ssl
         self.verify = verify
+        self.timeout = timeout
 
-    def get_token(self, username: str, password: str) -> str:
+    def get_token(
+            self,
+            username: str,
+            password: str,
+    ) -> str:
         """
         Use the username and password auth backend to obtain a client token.  The clien token can be used to sign
         a key for direct SSH access.
@@ -48,7 +54,14 @@ class Client(object):
             'cache-control': "no-cache",
         }
 
-        response = requests.request("POST", url, data=payload, headers=headers, verify=self.verify)
+        response = requests.request(
+            "POST",
+            url,
+            data=payload,
+            headers=headers,
+            verify=self.verify,
+            timeout=self.timeout
+        )
         client_token = response.json()['auth']['client_token']
         return client_token
 
