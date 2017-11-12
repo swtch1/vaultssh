@@ -111,6 +111,10 @@ For more informatin the methods in this library have build in
 documentation that can be referenced directly through the source code
 or any modern IDE.
 
+# Versioning
+If you are maintaining this project the version information can be found
+in the setup.py file.  This should be bumped when the project is updated.
+
 # Contributing
 This library is pretty bare bones as it was created for a very specific
 use case.  If you want to add on just follow PEP8 styling as well as the
