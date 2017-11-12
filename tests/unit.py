@@ -58,8 +58,8 @@ class TestVaultSSH(TestCase):
             "auth": None
         }
         m.post('http://somehost:1234/v1/ssh-client-signer/sign/clientrole', json=response)
-        signed_key = client.sign_key(token='1234')
-        self.assertEqual(signed_key, 'ssh-rsa-cert-v01@openssh.com AAA==\n')
+        signed_key = client.sign_key(token='1234', public_key='1A2B3C')
+        self.assertEqual(signed_key, 'ssh-rsa-cert-v01@openssh.com AAA==')
 
 
 if __name__ == '__main__':
