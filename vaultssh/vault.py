@@ -10,7 +10,7 @@ class Client(object):
             api_version: str='v1',
             use_ssl: bool=True,
             verify: bool=True,
-            timeout: str=None,
+            timeout: int=None,
     ):
         """
         Create a client that can communicate with the Vault API.
